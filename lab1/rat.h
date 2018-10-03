@@ -6,20 +6,7 @@
 using namespace std;
 
 class Rational {                           // not fully commented
-public:
-   Rational(int = 0, int = 1);             // default constructor
-   Rational add(const Rational &);
-   Rational subtract(const Rational &);
-   Rational multiply(const Rational &);
-   Rational divide(const Rational &);
-   void printRational();
-   void printRationalAsFloat();
-   
-   //
-   int getNumerator() const;
-   int getDenominator() const;
-
-   //overload the output and input
+//overload the output and input
    //operator<< display error when denominator is 0
    //operator<< display 0 when the nominator is 0
    //display just numerator if denominator is 1
@@ -29,6 +16,20 @@ public:
    //get nominator and denominator from user
    //use printRational() 
    friend istream& operator>>(istream&, Rational&);
+
+public:
+   Rational(int = 0, int = 1);             // default constructor
+   Rational add(const Rational &);
+   Rational subtract(const Rational &);
+   Rational multiply(const Rational &);
+   Rational divide(const Rational &);
+   void printRational();
+   void printRationalAsFloat();
+   
+   //return int value of numerator
+   int getNumerator() const;
+   //return int value of denominator
+   int getDenominator() const;
 
    //arithetic operators
    //add 2 object (in this case Rational) and return Rational temp
@@ -64,5 +65,5 @@ private:
    void reduce();                 // utility function, reduce to lowest terms
 };
 
-#include "rat.cpp" //include rat.cpp here so, I dont have to include rat.cpp in main()
-#endif
+
+#endif //rat_h
