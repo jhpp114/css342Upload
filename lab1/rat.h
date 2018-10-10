@@ -19,11 +19,24 @@ class Rational {                           // not fully commented
 
 public:
    Rational(int = 0, int = 1);             // default constructor
+   //a.add function
+   //create an object that return the value after add a object to parameter object
    Rational add(const Rational &);
+   //create an object that return the value after subtract a object to parameter object
    Rational subtract(const Rational &);
+   //create an object that return the value after multiply a object to parameter object
    Rational multiply(const Rational &);
+   //create an object that return the value after divide a object to parameter object
    Rational divide(const Rational &);
+
+    //print numerator / denominator form
+    //have condition
+    //if denominator is zero, print out error
+    //if the numerator is 0 print out 0
    void printRational();
+
+   //print the fraction to float type decimal number
+   //have one condition, if denaminator is zero print error
    void printRationalAsFloat();
    
    //return int value of numerator
@@ -46,12 +59,18 @@ public:
    bool operator>(const Rational &) const; 
    
    //check object < parameter, return false or true
-   //return true if parameter is bigger
    bool operator<(const Rational &) const;
-   //check object >= 
+
+   //check object >= parameter, return false or true
    bool operator>=(const Rational &) const; 
+
+   //check object <= parameter, return false or true
    bool operator<=(const Rational &) const; 
+
+   //check object == parameter, return false or true
    bool operator==(const Rational &) const; 
+
+   //check object != parameter, return false or true
    bool operator!=(const Rational &) const; 
 
     // assignment operators

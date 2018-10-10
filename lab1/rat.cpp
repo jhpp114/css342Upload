@@ -4,6 +4,7 @@
 //------------------------------ Rational ------------------------------------
 // default constructor:  parameters are numerator and denominator respectively
 // if the number is negative, the negative is always stored in the numerator
+//for example, if denominaotr is negative make the numerator to negative
 Rational::Rational(int n, int d) {
    numerator = d < 0 ? -n : n;
    denominator = d < 0 ? -d : d;
@@ -81,7 +82,7 @@ void Rational::printRationalAsFloat() {
 //-------------------------------- reduce ------------------------------------
 // reduce fraction to lowest terms
 void Rational::reduce() {
-   int n = numerator < 0 ? -numerator : numerator;
+   int n = numerator < 0 ? -numerator : numerator; 
    int d = denominator;
    int largest = n > d ? n : d;
 
@@ -115,14 +116,14 @@ int Rational::getDenominator() const{
    //else just print numerator / denominator
    //use get function
 std::ostream& operator<<(std::ostream& output, const Rational& obj){
-      if(obj.getDenominator() == 0){
+      if(obj.denominator == 0){
             output << "Error Denominator != 0";
-      }else if(obj.getNumerator() == 0){
-            output << obj.getNumerator();
-      }else if(obj.getDenominator() == 1){
-            output << obj.getNumerator();
+      }else if(obj.numerator == 0){
+            output << obj.numerator;
+      }else if(obj.denominator == 1){
+            output << obj.numerator;
       }else{
-            output << obj.getNumerator() << "/" << obj.getDenominator();
+            output << obj.numerator << "/" << obj.denominator;
       }
       return output;
 }
@@ -141,9 +142,9 @@ std::istream& operator>>(std::istream& input, Rational& obj){
    //return temp 
 Rational Rational::operator+(const Rational &addObj) const{
       Rational temp;
-      temp.numerator = (getNumerator() * addObj.getDenominator()) + (getDenominator() * addObj.getNumerator());
-      temp.denominator = getDenominator() * addObj.getDenominator(); 
-      if(temp.getDenominator() != 0){
+      temp.numerator = (numerator * addObj.denominator) + (denominator * addObj.numerator);
+      temp.denominator = (denominator * addObj.denominator); 
+      if(temp.denominator != 0){
             temp.reduce();
       }
       return temp;
@@ -155,8 +156,8 @@ Rational Rational::operator+(const Rational &addObj) const{
    //return temp 
 Rational Rational::operator-(const Rational &subObj) const{
       Rational temp;
-      temp.numerator = (getNumerator() * subObj.getDenominator()) - (getDenominator() * subObj.getNumerator());
-      temp.denominator = getDenominator() * subObj.getDenominator();
+      temp.numerator = (numerator * subObj.denominator) - (denominator * subObj.numerator);
+      temp.denominator = denominator * subObj.denominator;
       if(temp.getDenominator() != 0){
             temp.reduce();
       }
@@ -169,9 +170,9 @@ Rational Rational::operator-(const Rational &subObj) const{
    //return temp 
 Rational Rational::operator*(const Rational &mulObj) const{
       Rational temp;
-      temp.numerator = getNumerator() * mulObj.getNumerator();
-      temp.denominator = getDenominator() * mulObj.getDenominator();
-      if(temp.getDenominator() != 0){
+      temp.numerator = numerator * mulObj.numerator;
+      temp.denominator = denominator * mulObj.denominator;
+      if(temp.denominator != 0){
             temp.reduce();
       }
       return temp;
@@ -182,9 +183,9 @@ Rational Rational::operator*(const Rational &mulObj) const{
    //use get function
 Rational Rational::operator/(const Rational &divObj) const{
       Rational temp;
-      if(divObj.getNumerator() != 0){
-      temp.numerator = getNumerator() * divObj.getDenominator();
-      temp.denominator = getDenominator() * divObj.getNumerator();
+      if(divObj.numerator != 0){
+      temp.numerator = numerator * divObj.denominator;
+      temp.denominator = denominator * divObj.numerator;
       temp.reduce();
       }else{
             return 0;
@@ -197,39 +198,63 @@ Rational Rational::operator/(const Rational &divObj) const{
     //return  true if a is bigger than b
     //since it is fraction, try to get float decimal and compare
 bool Rational::operator>(const Rational &compareObj) const{
-      return (float (getNumerator())/getDenominator() > float(compareObj.getNumerator())/compareObj.getDenominator());
+      if((numerator * compareObj.denominator) > (denominator * compareObj.numerator)){
+            return true;
+      }else{
+            return false;
+      }
 }
    // compare a<b
    //return true if a is smaller than b
 bool Rational::operator<(const Rational &compareObj) const{
-      return (float (getNumerator())/getDenominator() < float(compareObj.getNumerator())/compareObj.getDenominator());
+      if((numerator * compareObj.denominator) < (denominator * compareObj.numerator)){
+            return true;
+      }else{
+            return false;
+      }
 }
       //compare a>=b
       //return true if a is bigger or equal to b
 bool Rational::operator>=(const Rational &compareObj) const{
-      return (float (getNumerator())/getDenominator() >= float(compareObj.getNumerator())/compareObj.getDenominator());
+      if((numerator * compareObj.denominator) >= (denominator * compareObj.numerator)){
+            return true;
+      }else{
+            return false;
+      }
 }
       //compare a <= b
       //return true if b is equal or bigger than a
 bool Rational::operator<=(const Rational &compareObj) const{
-      return (float (getNumerator())/getDenominator() <= float(compareObj.getNumerator())/compareObj.getDenominator());
+      if((numerator * compareObj.denominator) <= (denominator * compareObj.numerator)){
+            return true;
+      }else{
+            return false;
+      }
 }
       //compare a == b
       //return true if two objects are equal
 bool Rational::operator==(const Rational &compareObj) const{
-     return (float (getNumerator())/getDenominator() == float(compareObj.getNumerator())/compareObj.getDenominator());
+      if((numerator * compareObj.denominator) == (denominator * compareObj.numerator)){
+            return true;
+      }else{
+            return false;
+      }
 }
       //compare a != b
       //return true if objects are not same
 bool Rational::operator!=(const Rational &compareObj) const{
-     return (float (getNumerator())/getDenominator() != float(compareObj.getNumerator())/compareObj.getDenominator());
+     if((numerator * compareObj.denominator) != (denominator * compareObj.numerator)){
+            return true;
+      }else{
+            return false;
+      }
 }
 
 //---------------assignment operators --------------------------------
 //
 Rational& Rational::operator+=(const Rational &addToObj){
-      this->numerator = (getDenominator() * addToObj.getNumerator()) + (getNumerator() * addToObj.getDenominator());
-      this->denominator = (getDenominator() * addToObj.getDenominator());
+      this->numerator = (this->denominator* addToObj.numerator) + (this->numerator * addToObj.denominator);
+      this->denominator = (this->denominator * addToObj.denominator);
       if(this->denominator != 0){
             this->reduce();
       }
