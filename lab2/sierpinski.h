@@ -6,12 +6,12 @@
 #include <math.h>
 
 using namespace std; 
-//why are you using std in header file and cpp file that is not your main?
-//I personally don;t get it.
 
+//sierpinski class inherits Turtle class that is pre-made by professor
+//public is defaulted so it is ok to right :Turtle instead of public Turtle
 class Sierpinski: Turtle{
     public:
-    Sierpinski(float initX = 0.0, float initY = 0.0, float initAngle = 0.0);
+    Sierpinski(float initX = 0.0, float initY = 0.0, float initAngle = 0.0); //default constructor 
     void leftCurve(int l, float d); //draw a level-l left curve with dist d
     void rightCurve(int l, float d); //draw a level-l right curve with dist d
 };
