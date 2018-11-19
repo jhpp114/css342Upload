@@ -75,10 +75,10 @@ int main( int argc, char* argv[] ) {
     selectionsort( item3);
     gettimeofday( &endTime, 0 );
     selectionTime = elapsed( startTime, endTime );
-
+`
     //print
     outfile << size << "\t\t" << bubbleTime << "\t\t" << insertTime << "\t\t" << selectionTime << "\n";
-    size+=20; //size increase
+    size+=20; //size increase  
   }
 
   // Complete your program here. You can use while or for statement. 
