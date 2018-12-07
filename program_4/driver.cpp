@@ -55,4 +55,10 @@ int main( ) {
   cout << endl;
 
   cout << "cost of find = " << facultyList.getCost( ) << endl;
+
+//test clear
+  // facultyList.clear();
+  // cout << "#faculty members: " << facultyList.size( ) << endl;
+  // facultyList.show( );
+  // cout << endl;
 }
