@@ -21,6 +21,7 @@ int main( ) {
   facultyList.insert( "fukuda" );
   facultyList.insert( "stiber" );
   facultyList.insert( "jackels" );
+  //facultyList.insert( "jackels" );
   
   //test
   //facultyList.insert("ackels");
